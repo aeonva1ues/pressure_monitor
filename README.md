@@ -1,4 +1,5 @@
 ### Трекер давления
+![project test](https://github.com/aeonva1ues/pressure_monitor/actions/workflows/django.yml/badge.svg)
 ___
 #### Функционал
 
