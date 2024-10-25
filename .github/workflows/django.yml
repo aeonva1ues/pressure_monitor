@@ -37,4 +37,9 @@ jobs:
       with:
         plugins: "flake8-commas flake8-quotes"
     - name: Run tests
+      env:
+        POSTGRES_DB: pressure_monitor
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: 12345
+        POSTGRES_HOST: 127.0.0.1
       run: python manage.py test

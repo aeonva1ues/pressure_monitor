@@ -58,6 +58,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "pressure_monitor.wsgi.application"
 
+POSTGRES_HOST = os.getenv("POSTGRES_HOST", default="db")
 POSTGRES_DB = os.getenv("POSTGRES_DB", default="pressure_monitor")
 POSTGRES_USER = os.getenv("POSTGRES_USER", default="postgres")
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", default="12345")
@@ -68,7 +69,7 @@ DATABASES = {
         "NAME": POSTGRES_DB,
         "USER": POSTGRES_USER,
         "PASSWORD": POSTGRES_PASSWORD,
-        "HOST": "db",
+        "HOST": POSTGRES_HOST,
         "PORT": "5432",
     },
 }
