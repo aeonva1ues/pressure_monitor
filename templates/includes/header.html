@@ -1,0 +1,20 @@
+{% include "includes/login_modal.html" %}
+{% include "includes/createnote_modal.html" %}
+
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'tracker:list' %}">Pressure Monitor</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+        {% if request.user.is_active %}
+            <button class="btn btn-warning me-3" data-bs-toggle="modal" data-bs-target="#createModal">Добавить запись</button>
+            <a href="{% url 'tracker:logout' %}"><button class="btn btn-danger">Выйти</button></a>
+        {% else %}
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#loginModal">Войти</button>
+        {% endif %}
+      </div>
+    </div>
+  </nav>

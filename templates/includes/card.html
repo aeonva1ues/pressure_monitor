@@ -1,0 +1,18 @@
+<div class="card text-center my-4">
+    <div class="card-header">
+      Запись показаний давления пользователя {{ request.user.username }}
+    </div>
+    <div class="card-body">
+        <div class="input-group">
+            <input class="form-control text-center" placeholder="Систолическое" disabled>
+            <input class="form-control text-center" placeholder="Диастолическое" disabled>
+        </div>
+        <div class="input-group">
+            <input class="form-control bg-white text-center" placeholder="{{ note.systolic_pressure }}" disabled>
+            <input class="form-control bg-white text-center" placeholder="{{ note.diastolic_pressure }}" disabled>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+      {{ note.created_at }}
+    </div>
+  </div>

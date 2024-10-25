@@ -1,0 +1,26 @@
+<div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h1 class="modal-title fs-5" id="loginModalLabel">Вход</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <form method="POST" action="{% url 'tracker:login' %}">
+        {% csrf_token %}
+        <div class="modal-body">
+                <div class="mb-3">
+                    <label for="loginInput" class="form-label">Логин</label>
+                    <input type="text" class="form-control" id="loginInput" name="username" placeholder="name@example.com">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" name="password">
+                </div>
+                <h6>Воспользуйтесь логином user и паролем 12345</h6>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Войти</button>
+        </div>
+    </form>
+    </div>
+</div>
+</div>

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}Трекер давления{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    {% if not request.user.is_authenticated %}
+    <div class="alert alert-warning" role="alert">
+        Чтобы смотреть свои показания давления необходимо войти в аккаунт. Для вас был заготовлен пользователь, нажмите на кнопку "Войти"
+    </div>
+    {% else %}
+
+    {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            Неверный логин или пароль! Воспользуйтесь предложенным пользователем.
+        </div>
+        <hr>
+    {% endif %}
+
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == "success" %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+    </div>
+    {% elif message.tags == "error" %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+    {% if s_avg != -1 or d_avg != -1 %}
+    <div class="card text-center my-4">
+        <div class="card-header bg-warning">
+          Средние значения давления у пользователя {{ request.user.username }}
+        </div>
+        <div class="card-body">
+            <div class="input-group">
+                <input class="form-control text-center" placeholder="Среднее систолическое" disabled>
+                <input class="form-control text-center" placeholder="Среднее диастолическое" disabled>
+            </div>
+            <div class="input-group">
+                <input class="form-control bg-white text-center" placeholder="{% if s_avg != -1 %} {{ s_avg }} {% else %} - {% endif %}" disabled>
+                <input class="form-control bg-white text-center" placeholder="{% if d_avg != -1 %} {{ d_avg }} {% else %} - {% endif %}" disabled>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+          {{ note.created_at }}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="py-4">
+        <h6>Статистика за период:</h6>
+        <input type="date" id="startDate">
+        <input type="date" id="endDate">
+        <a class="btn btn-outline-primary" onclick="addFilter()">Показать</a>
+        <a class="btn btn-outline-warning" onclick="clearFilter()">Очистить</a>
+    </div>
+    
+    {% if notes|length == 1 %}
+    <h6>Последние показания:</h6>
+    {% endif %}
+    {% for note in notes %}
+        {% include "includes/card.html" %}
+        <hr>
+    {% empty %}
+    <div class="alert alert-warning" role="alert">
+            Записей не найдено!
+    </div>
+    {% endfor %}
+
+    {% endif %}
+</div>
+
+<script>
+    'use strict'
+    const startDate = document.getElementById("startDate");
+    const endDate = document.getElementById("endDate");
+    function addFilter() {
+        let start = new Date(startDate.value);
+        start = start.toISOString();
+        let end = new Date(endDate.value);
+        end.setHours(23, 59, 59)
+        end = end.toISOString();
+        console.log(start, end)
+        document.location = `/?start=${start}&end=${end}`;
+    }
+    function clearFilter() {
+        document.location = "/";
+    }
+</script>
+{% endblock %}

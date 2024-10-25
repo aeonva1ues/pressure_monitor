@@ -1,0 +1,26 @@
+<div class="modal fade" id="createModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="createModalLabel">Вход</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="POST" action="{% url 'tracker:create_note' %}">
+            {% csrf_token %}
+            <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="s_input" class="form-label">Систолическое давление</label>
+                        <input type="text" class="form-control" id="s_input" name="systolic_pressure">
+                    </div>
+                    <div class="mb-3">
+                        <label for="d_input" class="form-label">Диаболическое давление</label>
+                        <input type="text" class="form-control" id="d_input" name="diastolic_pressure">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Записать</button>
+            </div>
+        </form>
+        </div>
+    </div>
+    </div>
