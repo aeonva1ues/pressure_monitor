@@ -25,7 +25,7 @@ ___
 #### Установка
 **1.1 Склонируйте репозиторий**
 ```
-git clone 
+git clone https://github.com/aeonva1ues/pressure_monitor.git
 ```
 
 **1.2 Задайте переменные окружения в файле .env**
